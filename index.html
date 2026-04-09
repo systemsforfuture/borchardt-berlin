@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Borchardt Berlin — Seit 1853 · Gendarmenmarkt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #B8960C;
+  --gold-light: #D4AF37;
+  --gold-pale: #E8D080;
+  --bg: #060508;
+  --bg2: #0A0810;
+  --bg3: #100E18;
+  --surface: #12101A;
+  --surface2: #1A1825;
+  --border: rgba(184,150,12,0.15);
+  --border2: rgba(184,150,12,0.08);
+  --text: #F0ECE8;
+  --text2: #B8B0A8;
+  --text3: #7A7068;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s ease;
+}
+
+nav.scrolled {
+  padding: 14px 48px;
+  background: rgba(6,5,8,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border2);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.nav-logo span {
+  display: block;
+  font-size: 0.55rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--text2);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--gold-light); }
+
+.nav-cta {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold-light);
+  padding: 10px 24px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.nav-cta:hover {
+  background: var(--gold-pale);
+  transform: translateY(-1px);
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Klassische Säulen-Silhouette via radiale Gradienten — Gendarmenmarkt Atmosphäre */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 40% 80% at 20% 50%, rgba(184,150,12,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 100% at 50% 0%, rgba(212,175,55,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 50% at 80% 70%, rgba(100,80,20,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Goldene Vertikale Linien — klassisches Interieur */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 80px,
+    rgba(184,150,12,0.015) 80px,
+    rgba(184,150,12,0.015) 81px
+  );
+  pointer-events: none;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 120px 64px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  margin-bottom: 40px;
+  width: fit-content;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4.5rem, 8vw, 9rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text2);
+  letter-spacing: 0.05em;
+  margin-bottom: 48px;
+  max-width: 380px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.btn-primary {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold-light);
+  padding: 14px 32px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background: var(--gold-pale);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  color: var(--gold-light);
+  border-color: var(--gold-light);
+}
+
+/* Watermark */
+.hero-watermark {
+  position: absolute;
+  right: -2vw;
+  bottom: -5vw;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38vw;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(184,150,12,0.025);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 120px 64px 80px;
+  position: relative;
+  z-index: 2;
+  border-left: 1px solid var(--border2);
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0;
+  height: 320px;
+}
+
+.hero-stat {
+  border-bottom: 1px solid var(--border2);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-stat:last-child { border-bottom: none; }
+
+.stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+/* SECTION BASE */
+section {
+  padding: 120px 0;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 64px;
+}
+
+.section-eyebrow {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.divider {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  margin: 32px 0;
+}
+
+/* LEGENDE SECTION */
+.legende {
+  background: var(--bg);
+}
+
+.legende-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.legende-text {
+  font-size: 1rem;
+  color: var(--text2);
+  line-height: 1.9;
+  max-width: 480px;
+}
+
+.legende-text p + p {
+  margin-top: 20px;
+}
+
+.legende-cards {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  gap: 2px;
+}
+
+.legende-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 32px 36px;
+  transition: all 0.3s;
+}
+
+.legende-card:hover {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+.legende-card-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+
+.legende-card-text {
+  font-size: 0.85rem;
+  color: var(--text2);
+  line-height: 1.6;
+}
+
+/* SCHNITZEL SECTION */
+.schnitzel {
+  background: var(--bg2);
+  border-top: 1px solid var(--border2);
+  border-bottom: 1px solid var(--border2);
+}
+
+.schnitzel-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.schnitzel-content {
+  padding: 80px 64px 80px 0;
+  border-right: 1px solid var(--border2);
+}
+
+.schnitzel-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 32px;
+  padding-left: 32px;
+  border-left: 2px solid var(--gold);
+}
+
+.schnitzel-facts {
+  padding: 80px 0 80px 64px;
+}
+
+.schnitzel-fact {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border2);
+}
+
+.schnitzel-fact:last-child { border-bottom: none; }
+
+.fact-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.fact-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+/* SPEISEKARTE */
+.speisekarte {
+  background: var(--bg);
+}
+
+.karte-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+}
+
+.karte-col {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 40px 36px;
+}
+
+.karte-col-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gold-light);
+  letter-spacing: 0.05em;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border2);
+}
+
+.karte-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border2);
+}
+
+.karte-item:last-child { border-bottom: none; }
+
+.item-name {
+  font-size: 0.85rem;
+  color: var(--text);
+  font-weight: 400;
+}
+
+.item-sub {
+  font-size: 0.7rem;
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+.item-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* KLASSIKER FEATURED */
+.klassiker {
+  background: var(--bg2);
+}
+
+.klassiker-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 60px;
+}
+
+.klassiker-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 48px 44px;
+  transition: all 0.3s;
+}
+
+.klassiker-card.featured {
+  background: var(--surface2);
+  border-color: var(--gold);
+  position: relative;
+}
+
+.klassiker-card.featured::before {
+  content: 'SIGNATURE';
+  position: absolute;
+  top: -1px; right: 32px;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--bg);
+  background: var(--gold-light);
+  padding: 5px 14px;
+}
+
+.klassiker-card:hover {
+  border-color: var(--border);
+  transform: translateY(-2px);
+}
+
+.klassiker-card.featured:hover {
+  border-color: var(--gold-light);
+}
+
+.klassiker-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.klassiker-sub {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text3);
+  margin-bottom: 20px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.klassiker-desc {
+  font-size: 0.85rem;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.klassiker-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--gold-light);
+}
+
+/* AMBIENTE SECTION */
+.ambiente {
+  background: var(--bg);
+}
+
+.ambiente-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  margin-top: 60px;
+}
+
+.ambiente-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 44px 36px;
+  transition: all 0.3s;
+}
+
+.ambiente-card:hover {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+.ambiente-icon {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.ambiente-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.ambiente-text {
+  font-size: 0.82rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+
+/* GALA BAR — Stats strip */
+.gala-bar {
+  background: var(--surface);
+  border-top: 1px solid var(--border2);
+  border-bottom: 1px solid var(--border2);
+  padding: 48px 0;
+}
+
+.gala-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.gala-stat {
+  text-align: center;
+  padding: 20px;
+  border-right: 1px solid var(--border2);
+}
+
+.gala-stat:last-child { border-right: none; }
+
+.gala-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--gold-light);
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.gala-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+/* CONTACT */
+.contact {
+  background: var(--bg2);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  margin-top: 60px;
+}
+
+.contact-col {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 44px 36px;
+}
+
+.contact-col-title {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.contact-line {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.9;
+}
+
+.contact-line a {
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact-line a:hover { color: var(--gold-light); }
+
+.contact-line strong {
+  color: var(--text);
+  font-weight: 400;
+}
+
+.contact-res-btn {
+  display: inline-block;
+  margin-top: 28px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold-light);
+  padding: 12px 28px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.contact-res-btn:hover {
+  background: var(--gold-pale);
+  transform: translateY(-1px);
+}
+
+/* FOOTER */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border2);
+  padding: 40px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.footer-copy {
+  font-size: 0.7rem;
+  color: var(--text3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 18px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 120px 24px 60px; }
+  .hero-right { display: none; }
+
+  .container { padding: 0 24px; }
+  section { padding: 80px 0; }
+
+  .legende-grid { grid-template-columns: 1fr; gap: 48px; }
+  .schnitzel-inner { grid-template-columns: 1fr; }
+  .schnitzel-content { padding: 60px 0; border-right: none; border-bottom: 1px solid var(--border2); }
+  .schnitzel-facts { padding: 60px 0 0; }
+  .karte-grid { grid-template-columns: 1fr; }
+  .klassiker-grid { grid-template-columns: 1fr; }
+  .ambiente-grid { grid-template-columns: 1fr; }
+  .gala-stats { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    Borchardt
+    <span>Französische Straße · Berlin · Seit 1853</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#legende">Geschichte</a></li>
+    <li><a href="#speisekarte">Speisekarte</a></li>
+    <li><a href="#ambiente">Ambiente</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <a href="tel:+493081886262" class="nav-cta">030 81 88 62 62</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-watermark">B</div>
+
+  <div class="hero-left">
+    <div class="hero-badge">✦ Seit 1853 · Berliner Institution · Gendarmenmarkt</div>
+    <h1 class="hero-title">Borch<em>ardt</em></h1>
+    <p class="hero-subtitle">
+      Das legendäre Restaurant am Gendarmenmarkt. Wiener Schnitzel, Champagner und die Crème de la Crème Berlins — täglich seit dem Jahr 1853.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+493081886262" class="btn-primary">Tisch reservieren</a>
+      <a href="#speisekarte" class="btn-secondary">Speisekarte ansehen</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-value">1853</div>
+        <div class="stat-label">Gründungsjahr</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-value">Tägl.</div>
+        <div class="stat-label">11:30 bis Mitternacht</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-value">Gendar-</div>
+        <div class="stat-label">menmarkt · Berlin</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-value">✦</div>
+        <div class="stat-label">Berlins erste Adresse</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGENDE -->
+<section class="legende" id="legende">
+  <div class="container">
+    <div class="legende-grid">
+      <div>
+        <div class="section-eyebrow">Geschichte</div>
+        <h2 class="section-title">Eine <em>Berliner</em><br>Legende</h2>
+        <div class="divider"></div>
+        <div class="legende-text">
+          <p>Das Borchardt ist kein Restaurant — es ist ein Stück Berliner Geschichte. Seit 1853 ist es die erste Adresse der Stadt, wo Kultur, Politik, Kunst und das Beste der Küche zusammenfinden.</p>
+          <p>Von Kaiser Wilhelm bis zu den heutigen Weltstars: Das Borchardt hat Generationen von Legenden an seinen Tischen begrüßt. Der ikonische Kaisersaal mit seinen Marmorsäulen und dem vergoldeten Stuckdekor ist einer der schönsten Speisesäle Europas.</p>
+          <p>Das Wiener Schnitzel vom Kalb — dünn geklopft, knusprig goldgelb, mit einer Zitronenscheibe serviert — ist heute so legendär wie das Haus selbst.</p>
+        </div>
+      </div>
+      <div class="legende-cards">
+        <div class="legende-card">
+          <div class="legende-card-year">1853</div>
+          <div class="legende-card-text">Gründung des Borchardt in der Französischen Straße am Gendarmenmarkt — Berlin Mitte</div>
+        </div>
+        <div class="legende-card">
+          <div class="legende-card-year">Kaisersaal</div>
+          <div class="legende-card-text">Marmorsäulen, vergoldeter Stuck, rote Samtbänke — einer der prächtigsten Speisesäle der Hauptstadt</div>
+        </div>
+        <div class="legende-card">
+          <div class="legende-card-year">Heute</div>
+          <div class="legende-card-text">Täglich ab 11:30 Uhr — Stammgast-Treffpunkt für Berlins Kulturschaffende, Politiker und internationale Stars</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHNITZEL SECTION -->
+<section class="schnitzel">
+  <div class="container">
+    <div class="schnitzel-inner">
+      <div class="schnitzel-content">
+        <div class="section-eyebrow">Das Gericht</div>
+        <h2 class="section-title" style="margin-bottom:32px">Das Wiener<br><em>Schnitzel</em></h2>
+        <blockquote class="schnitzel-quote">
+          „Dünn, goldgelb, knusprig — und so groß, dass es den Teller überragt."
+        </blockquote>
+        <p style="font-size:0.9rem;color:var(--text2);line-height:1.8;max-width:440px">
+          Das Borchardt-Schnitzel ist Berliner Mythos. Vom Kalb, dünn geklopft, in Butterschmalz ausgebacken — serviert mit einem schlichten Zitronenzweig und Preiselbeeren. Seit Jahrzehnten unverändert. Das ist Perfektion.
+        </p>
+      </div>
+      <div class="schnitzel-facts">
+        <div class="section-eyebrow" style="margin-bottom:24px">Details</div>
+        <div class="schnitzel-fact">
+          <div class="fact-label">Fleisch</div>
+          <div class="fact-value">Kalbfleisch, hausgemacht geklopft</div>
+        </div>
+        <div class="schnitzel-fact">
+          <div class="fact-label">Zubereitung</div>
+          <div class="fact-value">In Butterschmalz ausgebacken</div>
+        </div>
+        <div class="schnitzel-fact">
+          <div class="fact-label">Beilagen</div>
+          <div class="fact-value">Zitrone · Preiselbeeren · Kartoffelsalat</div>
+        </div>
+        <div class="schnitzel-fact">
+          <div class="fact-label">Preis</div>
+          <div class="fact-value" style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold-light)">€ 38</div>
+        </div>
+        <div class="schnitzel-fact">
+          <div class="fact-label">Status</div>
+          <div class="fact-value">Berliner Kulturerbe</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEISEKARTE -->
+<section class="speisekarte" id="speisekarte">
+  <div class="container">
+    <div class="section-eyebrow">Küche</div>
+    <h2 class="section-title">Die <em>Speisekarte</em></h2>
+    <div class="karte-grid">
+      <!-- Vorspeisen -->
+      <div class="karte-col">
+        <div class="karte-col-title">Vorspeisen & Suppen</div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Beef Tartare</div>
+            <div class="item-sub">Eigelb, Kapern, Senf, Toast</div>
+          </div>
+          <div class="item-price">€ 28</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Burrata</div>
+            <div class="item-sub">Tomate, Basilikum, Olivenöl</div>
+          </div>
+          <div class="item-price">€ 24</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Räucherlachs</div>
+            <div class="item-sub">Crème fraîche, Kapern, Brioche</div>
+          </div>
+          <div class="item-price">€ 32</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Bisque de Homard</div>
+            <div class="item-sub">Klassische Hummersuppe</div>
+          </div>
+          <div class="item-price">€ 22</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Jakobsmuscheln</div>
+            <div class="item-sub">Erbsenpüree, Speck, Sauce</div>
+          </div>
+          <div class="item-price">€ 34</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Gänseleberterrine</div>
+            <div class="item-sub">Brioche, Zwiebelkonfitüre</div>
+          </div>
+          <div class="item-price">€ 36</div>
+        </div>
+      </div>
+      <!-- Hauptgänge -->
+      <div class="karte-col">
+        <div class="karte-col-title">Hauptgänge</div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Wiener Schnitzel</div>
+            <div class="item-sub">Kalb, Butterschmalz, Preiselbeeren</div>
+          </div>
+          <div class="item-price">€ 38</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Entrecôte Café de Paris</div>
+            <div class="item-sub">250g, Kräuterbutter, Pommes</div>
+          </div>
+          <div class="item-price">€ 52</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Dorade Royale</div>
+            <div class="item-sub">Gegrillet, Gemüse, Zitrone</div>
+          </div>
+          <div class="item-price">€ 42</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Steinbutt</div>
+            <div class="item-sub">Beurre blanc, Spinat</div>
+          </div>
+          <div class="item-price">€ 58</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Ente à l'Orange</div>
+            <div class="item-sub">Rotkohl, Klöße, klassisch</div>
+          </div>
+          <div class="item-price">€ 44</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Risotto Parmesan</div>
+            <div class="item-sub">Trüffel, Parmesan, Schnittlauch</div>
+          </div>
+          <div class="item-price">€ 36</div>
+        </div>
+      </div>
+      <!-- Desserts -->
+      <div class="karte-col">
+        <div class="karte-col-title">Desserts & Champagner</div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Crème Brûlée</div>
+            <div class="item-sub">Klassisch, Vanilleschote</div>
+          </div>
+          <div class="item-price">€ 16</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Soufflé au Chocolat</div>
+            <div class="item-sub">Warm, Vanilleeis</div>
+          </div>
+          <div class="item-price">€ 18</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Millefeuille</div>
+            <div class="item-sub">Vanillecreme, Erdbeeren</div>
+          </div>
+          <div class="item-price">€ 17</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Moët & Chandon Impérial</div>
+            <div class="item-sub">Glas / Flasche</div>
+          </div>
+          <div class="item-price">€ 22 / 120</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Dom Pérignon 2015</div>
+            <div class="item-sub">Flasche</div>
+          </div>
+          <div class="item-price">€ 350</div>
+        </div>
+        <div class="karte-item">
+          <div>
+            <div class="item-name">Käsewagen</div>
+            <div class="item-sub">Selektion, Brot, Chutney</div>
+          </div>
+          <div class="item-price">€ 22</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KLASSIKER FEATURED -->
+<section class="klassiker">
+  <div class="container">
+    <div class="section-eyebrow">Unsere Klassiker</div>
+    <h2 class="section-title">Berliner <em>Ikonen</em></h2>
+    <div class="klassiker-grid">
+      <div class="klassiker-card">
+        <div class="klassiker-name">Beef Tartare Borchardt</div>
+        <div class="klassiker-sub">Vorspeise — handgezogen, täglich frisch</div>
+        <div class="klassiker-desc">
+          Frisches Rinderfilet, von Hand gezogen, mit Eigelb, Kapern, Schalotten, Dijonsenf und geröstetem Sourdough-Toast. Ein Borchardt-Klassiker seit Jahrzehnten — kalt, elegant, präzise.
+        </div>
+        <div class="klassiker-price">€ 28</div>
+      </div>
+      <div class="klassiker-card featured">
+        <div class="klassiker-name">Wiener Schnitzel vom Kalb</div>
+        <div class="klassiker-sub">Hauptgericht — das Original seit 1853</div>
+        <div class="klassiker-desc">
+          Das legendärste Schnitzel Berlins. Zartes Kalbfleisch, dünn geklopft, in einer Hülle aus frischen Semmelbröseln, in Butterschmalz goldgelb ausgebacken bis es den Teller überragt. Mit Zitrone und Preiselbeeren. Unvergesslich.
+        </div>
+        <div class="klassiker-price">€ 38</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMBIENTE -->
+<section class="ambiente" id="ambiente">
+  <div class="container">
+    <div class="section-eyebrow">Ambiente & Erlebnis</div>
+    <h2 class="section-title">Der <em>Kaisersaal</em></h2>
+    <div class="ambiente-grid">
+      <div class="ambiente-card">
+        <div class="ambiente-icon">🏛</div>
+        <div class="ambiente-title">Kaisersaal</div>
+        <div class="ambiente-text">
+          Marmorsäulen, vergoldeter Stuck, rote Samtbänke und Kristallleuchter — der Kaisersaal ist einer der prächtigsten Speisesäle Europas. Geschichte in jeder Ecke.
+        </div>
+      </div>
+      <div class="ambiente-card">
+        <div class="ambiente-icon">🥂</div>
+        <div class="ambiente-title">Champagner & Gesellschaft</div>
+        <div class="ambiente-text">
+          Von Politikern bis zu Weltstars — das Borchardt ist seit Generationen Treffpunkt der Berliner Elite und der internationalen Prominenz. Sehen und gesehen werden.
+        </div>
+      </div>
+      <div class="ambiente-card">
+        <div class="ambiente-icon">📍</div>
+        <div class="ambiente-title">Gendarmenmarkt</div>
+        <div class="ambiente-text">
+          Direkt am schönsten Platz Berlins — zwischen Französischem Dom, Deutschem Dom und Konzerthaus. Das Borchardt liegt im Herzen des historischen Berlin.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALA BAR -->
+<div class="gala-bar">
+  <div class="container">
+    <div class="gala-stats">
+      <div class="gala-stat">
+        <span class="gala-num">1853</span>
+        <span class="gala-label">Gründungsjahr</span>
+      </div>
+      <div class="gala-stat">
+        <span class="gala-num">170+</span>
+        <span class="gala-label">Jahre Geschichte</span>
+      </div>
+      <div class="gala-stat">
+        <span class="gala-num">Tägl.</span>
+        <span class="gala-label">11:30 bis 00:00 Uhr</span>
+      </div>
+      <div class="gala-stat">
+        <span class="gala-num">★</span>
+        <span class="gala-label">Berlins erste Adresse</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-eyebrow">Besuchen Sie uns</div>
+    <h2 class="section-title">Reservierung &amp; <em>Anfahrt</em></h2>
+    <div class="contact-grid">
+      <div class="contact-col">
+        <div class="contact-col-title">Adresse</div>
+        <div class="contact-line">
+          <strong>Borchardt Berlin</strong><br>
+          Französische Straße 47<br>
+          10117 Berlin<br>
+          <br>
+          Am Gendarmenmarkt<br>
+          Berlin-Mitte
+        </div>
+      </div>
+      <div class="contact-col">
+        <div class="contact-col-title">Öffnungszeiten</div>
+        <div class="contact-line">
+          <strong>Täglich</strong><br>
+          11:30 – 00:00 Uhr<br>
+          <br>
+          Küche durchgehend<br>
+          Reservierung empfohlen
+        </div>
+        <a href="tel:+493081886262" class="contact-res-btn">030 81 88 62 62</a>
+      </div>
+      <div class="contact-col">
+        <div class="contact-col-title">Kontakt</div>
+        <div class="contact-line">
+          <strong>Telefon</strong><br>
+          <a href="tel:+493081886262">030 81 88 62 62</a><br>
+          <br>
+          <strong>U-Bahn</strong><br>
+          U6 Französische Straße<br>
+          <br>
+          <strong>Dress Code</strong><br>
+          Smart Casual bis Formal
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Borchardt Berlin · Seit 1853</div>
+      <div class="footer-copy">Französische Straße 47 · 10117 Berlin · 030 81 88 62 62</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll nav
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+</script>
+</body>
+</html>
